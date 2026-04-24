@@ -1,0 +1,26 @@
+name: Install Dependencies
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual execution from Actions tab
+
+jobs:
+  install-gh-pages:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Match your Node.js version
+
+    # 3. Install dependencies
+    - name: Install gh-pages
+      run: npm install gh-pages --save-dev
